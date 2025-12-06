@@ -56,6 +56,9 @@ npm run test:unit:coverage
 
 ### E2E Tests (Playwright)
 
+คำสั่ง bunx playwright install
+คำสั่ง npx playwright install
+
 ```bash
 # Run E2E tests
 npm run test:e2e

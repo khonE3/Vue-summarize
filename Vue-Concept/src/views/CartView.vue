@@ -426,6 +426,14 @@ function checkout() {
 }
 
 @media (max-width: 768px) {
+  .cart-header h1 {
+    font-size: 1.75rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
   .cart-item {
     grid-template-columns: 80px 1fr;
     gap: 1rem;

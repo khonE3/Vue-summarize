@@ -325,10 +325,23 @@ function goToCart() {
     flex-direction: column;
     align-items: flex-start;
   }
+
+  .shop-header h1 {
+    font-size: 1.75rem;
+  }
   
   .products-grid {
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .categories {
+    gap: 0.5rem;
+  }
+
+  .category-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
   }
 }
 </style>

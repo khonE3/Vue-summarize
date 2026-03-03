@@ -70,22 +70,30 @@ function closeMobileMenu() {
         </div>
       </div>
       
+      <!-- Mobile Menu Overlay -->
+      <Transition name="overlay">
+        <div v-if="mobileMenuOpen" class="mobile-overlay" @click="closeMobileMenu"></div>
+      </Transition>
+
       <!-- Mobile Menu -->
-      <nav v-if="mobileMenuOpen" class="mobile-nav">
-        <RouterLink
-          v-for="item in navItems"
-          :key="item.path"
-          :to="item.path"
-          class="mobile-nav-link"
-          @click="closeMobileMenu"
-        >
-          <span class="nav-icon">{{ item.icon }}</span>
-          <span>{{ item.name }}</span>
-          <span v-if="item.badge && item.badge.value > 0" class="badge">
-            {{ item.badge.value }}
-          </span>
-        </RouterLink>
-      </nav>
+      <Transition name="mobile-menu">
+        <nav v-if="mobileMenuOpen" class="mobile-nav">
+          <RouterLink
+            v-for="item in navItems"
+            :key="item.path"
+            :to="item.path"
+            class="mobile-nav-link"
+            :class="{ active: route.path === item.path }"
+            @click="closeMobileMenu"
+          >
+            <span class="nav-icon">{{ item.icon }}</span>
+            <span>{{ item.name }}</span>
+            <span v-if="item.badge && item.badge.value > 0" class="badge">
+              {{ item.badge.value }}
+            </span>
+          </RouterLink>
+        </nav>
+      </Transition>
     </header>
 
     <main class="main-content">
@@ -172,7 +180,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 2rem;
+  gap: 1rem;
 }
 
 .logo {
@@ -181,6 +189,7 @@ body {
   gap: 0.75rem;
   text-decoration: none;
   color: var(--color-text);
+  flex-shrink: 0;
 }
 
 .logo-icon {
@@ -194,16 +203,18 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  white-space: nowrap;
 }
 
 .desktop-nav {
   display: none;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.25rem;
   flex: 1;
+  justify-content: center;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 768px) {
   .desktop-nav {
     display: flex;
   }
@@ -213,13 +224,15 @@ body {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 0.75rem;
   border-radius: 8px;
   text-decoration: none;
   color: var(--color-text);
   font-weight: 500;
   transition: all 0.2s;
   position: relative;
+  white-space: nowrap;
+  font-size: 0.9rem;
 }
 
 .nav-link:hover {
@@ -230,6 +243,25 @@ body {
 .nav-link.active {
   background-color: var(--color-primary);
   color: white;
+}
+
+/* Hide nav text on tablet, show only icons */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .nav-link {
+    padding: 0.5rem;
+  }
+  .nav-link > span:not(.nav-icon):not(.badge) {
+    display: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  .nav-link {
+    padding: 0.5rem 1rem;
+  }
+  .desktop-nav {
+    gap: 0.5rem;
+  }
 }
 
 .nav-icon {
@@ -249,6 +281,7 @@ body {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  flex-shrink: 0;
 }
 
 .theme-toggle {
@@ -284,27 +317,48 @@ body {
   height: 45px;
   align-items: center;
   justify-content: center;
+  color: var(--color-text);
+  transition: all 0.2s;
 }
 
-@media (min-width: 1024px) {
+.mobile-menu-btn:hover {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: white;
+}
+
+@media (min-width: 768px) {
   .mobile-menu-btn {
     display: none;
   }
 }
 
+/* Mobile Overlay */
+.mobile-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+}
+
+/* Mobile Nav */
 .mobile-nav {
   display: flex;
   flex-direction: column;
-  padding: 1rem;
+  padding: 0.75rem;
   background-color: var(--color-surface);
   border-top: 1px solid var(--color-border);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .mobile-nav-link {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  padding: 1rem;
+  padding: 0.875rem 1rem;
   text-decoration: none;
   color: var(--color-text);
   border-radius: 8px;
@@ -312,9 +366,50 @@ body {
   transition: background-color 0.2s;
 }
 
-.mobile-nav-link:hover {
+.mobile-nav-link:hover,
+.mobile-nav-link.active {
   background-color: var(--color-primary);
   color: white;
+}
+
+/* Mobile Menu Transition */
+.mobile-menu-enter-active {
+  transition: all 0.3s ease-out;
+}
+.mobile-menu-leave-active {
+  transition: all 0.2s ease-in;
+}
+.mobile-menu-enter-from {
+  opacity: 0;
+  transform: translateY(-10px);
+  max-height: 0;
+}
+.mobile-menu-enter-to {
+  opacity: 1;
+  transform: translateY(0);
+  max-height: 600px;
+}
+.mobile-menu-leave-from {
+  opacity: 1;
+  transform: translateY(0);
+  max-height: 600px;
+}
+.mobile-menu-leave-to {
+  opacity: 0;
+  transform: translateY(-10px);
+  max-height: 0;
+}
+
+/* Overlay Transition */
+.overlay-enter-active {
+  transition: opacity 0.3s ease;
+}
+.overlay-leave-active {
+  transition: opacity 0.2s ease;
+}
+.overlay-enter-from,
+.overlay-leave-to {
+  opacity: 0;
 }
 
 /* Main Content */
@@ -344,6 +439,7 @@ body {
   align-items: center;
   justify-content: center;
   gap: 0.75rem;
+  flex-wrap: wrap;
 }
 
 .footer-links a {
@@ -444,6 +540,44 @@ body {
 
 .grid-4 {
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+/* Mobile Responsive */
+@media (max-width: 767px) {
+  :root {
+    --header-height: 60px;
+  }
+
+  .logo-icon {
+    font-size: 1.5rem;
+  }
+
+  .logo h1 {
+    font-size: 1.2rem;
+  }
+
+  .theme-toggle,
+  .mobile-menu-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 1.25rem;
+  }
+
+  .main-content {
+    padding: 1.25rem 0.75rem;
+  }
+
+  .main-footer {
+    padding: 1.5rem 0.75rem;
+  }
+
+  .main-footer p {
+    font-size: 0.875rem;
+  }
+
+  .footer-links {
+    font-size: 0.875rem;
+  }
 }
 
 @media (max-width: 768px) {

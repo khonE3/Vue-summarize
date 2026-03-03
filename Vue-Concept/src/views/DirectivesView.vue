@@ -929,12 +929,51 @@ function updateMemoItem(id: number) {
 }
 
 @media (max-width: 768px) {
+  .directive-section {
+    padding: 1.25rem;
+  }
+
+  .directive-section h2 {
+    font-size: 1.35rem;
+  }
+
+  .demo-box {
+    padding: 1rem;
+    overflow-x: auto;
+  }
+
+  .data-table {
+    min-width: 500px;
+  }
+
+  .dynamic-table {
+    min-width: 300px;
+  }
+
   .number-grid {
     grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
   }
   
   .stats-grid {
     grid-template-columns: 1fr;
+  }
+
+  .task-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .list-item {
+    flex-wrap: wrap;
+  }
+
+  .controls {
+    gap: 0.5rem;
+  }
+
+  .memo-item {
+    flex-wrap: wrap;
   }
 }
 </style>

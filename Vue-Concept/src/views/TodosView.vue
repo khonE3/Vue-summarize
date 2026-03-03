@@ -658,6 +658,10 @@ function formatDate(dateString: string) {
     flex-direction: column;
     align-items: flex-start;
   }
+
+  .todos-header h1 {
+    font-size: 1.75rem;
+  }
   
   .filters {
     flex-direction: column;
@@ -666,9 +670,27 @@ function formatDate(dateString: string) {
   .search-input {
     width: 100%;
   }
+
+  .filter-buttons {
+    width: 100%;
+  }
+
+  .filter-btn {
+    flex: 1;
+    text-align: center;
+  }
   
   .form-row {
     grid-template-columns: 1fr;
+  }
+
+  .todo-card {
+    flex-wrap: wrap;
+  }
+
+  .todo-actions {
+    width: 100%;
+    justify-content: flex-end;
   }
 }
 </style>

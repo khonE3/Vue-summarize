@@ -607,7 +607,7 @@ function submitUpload() {
 
 .forms-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 500px), 1fr));
   gap: 2rem;
 }
 
@@ -797,6 +797,14 @@ function submitUpload() {
 }
 
 @media (max-width: 768px) {
+  .forms-header h1 {
+    font-size: 1.75rem;
+  }
+
+  .form-card {
+    padding: 1.25rem;
+  }
+
   .form-row {
     grid-template-columns: 1fr;
   }

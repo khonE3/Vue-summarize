@@ -521,6 +521,28 @@ const stats = [
   .section-card {
     padding: 1.5rem;
   }
+
+  .section-card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .stat-box {
+    padding: 1.25rem;
+  }
+
+  .stat-icon {
+    font-size: 2rem;
+  }
+
+  .stat-value {
+    font-size: 1.75rem;
+  }
   
   .tech-grid,
   .features-grid {
@@ -533,6 +555,14 @@ const stats = [
   
   .footer-links .btn {
     width: 100%;
+  }
+
+  .learning-item {
+    padding: 1rem;
+  }
+
+  .description {
+    font-size: 1rem;
   }
 }
 </style>

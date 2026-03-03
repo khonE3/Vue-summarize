@@ -792,6 +792,18 @@ watch(
 }
 
 @media (max-width: 768px) {
+  .watcher-section {
+    padding: 1.25rem;
+  }
+
+  .watcher-section h2 {
+    font-size: 1.35rem;
+  }
+
+  .demo-box {
+    padding: 1rem;
+  }
+
   .form-row {
     grid-template-columns: 1fr;
   }
@@ -807,6 +819,29 @@ watch(
   
   .button-group .btn {
     width: 100%;
+  }
+
+  .code-info {
+    overflow-x: auto;
+  }
+
+  .code-info code {
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
+
+  .temperature-control {
+    gap: 1rem;
+  }
+
+  .counter-value,
+  .temp-value {
+    font-size: 2rem;
+    min-width: 60px;
+  }
+
+  .counter-display {
+    gap: 1rem;
   }
 }
 </style>

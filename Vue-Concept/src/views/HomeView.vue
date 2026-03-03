@@ -207,7 +207,7 @@ onMounted(() => {
 /* Hero Section */
 .hero {
   text-align: center;
-  padding: 4rem 0;
+  padding: 4rem 1rem;
 }
 
 .hero-title {
@@ -399,19 +399,52 @@ onMounted(() => {
 
 @media (max-width: 768px) {
   .hero {
-    padding: 2rem 0;
+    padding: 2rem 0.5rem;
   }
   
+  .section-title {
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .stats-section {
+    margin: 2rem 0;
+  }
+
   .stats-grid {
     grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .stat-value {
+    font-size: 2.25rem;
+  }
+
+  .features-section {
+    margin: 2rem 0;
   }
   
   .features-grid {
     grid-template-columns: 1fr;
+    gap: 1.25rem;
   }
   
+  .concepts-section {
+    padding: 1.5rem;
+    margin: 2rem 0;
+  }
+
   .concepts-grid {
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 1rem;
+  }
+
+  .concept-item {
+    padding: 1rem;
+  }
+
+  .concept-icon {
+    font-size: 2rem;
   }
 }
 </style>

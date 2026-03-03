@@ -635,8 +635,30 @@ export { ChildComponent }
 }
 
 @media (max-width: 768px) {
+  .lifecycle-section {
+    padding: 1.25rem;
+  }
+
+  .lifecycle-section h2 {
+    font-size: 1.35rem;
+    margin-bottom: 1rem;
+  }
+
   .status-cards {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  .status-card {
+    padding: 1rem;
+  }
+
+  .status-icon {
+    font-size: 1.75rem;
+  }
+
+  .status-value {
+    font-size: 1.25rem;
   }
   
   .lifecycle-diagram {
@@ -649,6 +671,17 @@ export { ChildComponent }
   
   .demo-controls .btn {
     width: 100%;
+  }
+
+  .logs-container {
+    padding: 1rem;
+    max-height: 300px;
+  }
+
+  .log-entry {
+    font-size: 0.75rem;
+    padding: 0.5rem;
+    word-break: break-all;
   }
 }
 </style>
